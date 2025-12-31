@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Đếm ngược Giao thừa 2026</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000 url('https://cdn.sforum.vn/sforum/wp-content/uploads/2022/12/hinh-nen-powerpoint-tet-14-3.png') center/cover;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .box {
+            background: rgba(0,0,0,0.7);
+            padding: 50px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+        }
+        .timer { display: flex; gap: 20px; justify-content: center; font-size: 3rem; font-weight: bold; }
+        .unit { font-size: 1rem; color: #ffd700; }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <h1>ĐẾN NĂM MỚI 2026</h1>
+        <div class="timer">
+            <div><span id="hours">00</span><div class="unit">GIỜ</div></div>
+            <div><span id="minutes">00</span><div class="unit">PHÚT</div></div>
+            <div><span id="seconds">00</span><div class="unit">GIÂY</div></div>
+        </div>
+    </div>
+
+    <script>
+        function countdown() {
+            // Đặt ngày đích: 0h ngày 1/1/2026
+            const target = new Date('January 01, 2026 00:00:00').getTime();
+            const now = new Date().getTime();
+            const gap = target - now;
+
+            // NẾU HẾT GIỜ: Chuyển hướng ngay lập tức
+            if (gap <= 0) {
+                window.location.href = "index1.html"; 
+                return;
+            }
+
+            // Tính toán thời gian còn lại
+            const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+            document.getElementById('hours').innerText = h < 10 ? '0'+h : h;
+            document.getElementById('minutes').innerText = m < 10 ? '0'+m : m;
+            document.getElementById('seconds').innerText = s < 10 ? '0'+s : s;
+        }
+        setInterval(countdown, 1000);
+    </script>
+</body>
+</html>
